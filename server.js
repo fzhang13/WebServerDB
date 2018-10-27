@@ -5,9 +5,9 @@
 * of this assignment has been copied manually or electronically from any other source
 * (including 3rd party web sites) or distributed to other students.
 *
-* Name: __Xin Song Felix Zhang__ Student ID: __111976171_ Date: _Oct 3rd, 2018_
+* Name: __Xin Song Felix Zhang__ Student ID: __111976171_ Date: _Oct 20th, 2018_
 *
-* Online (Heroku) Link:  https://radiant-retreat-87793.herokuapp.com/
+* Online (Heroku) Link:  https://murmuring-earth-25765.herokuapp.com/
 *
 ********************************************************************************/
 
