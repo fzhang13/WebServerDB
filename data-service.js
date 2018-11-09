@@ -111,7 +111,7 @@ module.exports.updateEmployee = function(employeeData){
         return new Promise((resolve,reject)=>{
             employees.forEach(employee =>{
                 if(employee.employeeNum == employeeData.employeeNum){
-                    employee.splice(employeeData.employeeNum -1, 1, employeeData);
+                    employees.splice(employeeData.employeeNum -1, 1, employeeData);
                 }
             });
             resolve();
