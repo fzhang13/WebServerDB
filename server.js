@@ -101,11 +101,11 @@ app.get("/employees", (req, res) => {
 });
 
 
-app.get("/managers", (req, res) => {
-    dataService.getManagers()
-        .then((data) => res.json(data))
-        .catch((err) => res.json({ "message": err }))
-});
+// app.get("/managers", (req, res) => {
+//     dataService.getManagers()
+//         .then((data) => res.json(data))
+//         .catch((err) => res.json({ "message": err }))
+// });
 
 app.get('/departments', (req, res) => {
     dataService.getDepartments()
