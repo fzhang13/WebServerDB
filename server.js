@@ -146,8 +146,8 @@ app.post('/employees/add', (req, res) => {
 });
 
 app.post("/employee/update", (req, res) => {
-    console.log(req.body);
-    res.redirect("/employees");
+    dataService.updateEmployee(req.body)
+    .then(res.redirect("/employees"))
 });
 
 app.get('*', (req, res) => {
