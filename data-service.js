@@ -27,6 +27,7 @@ const Employee = sequelize.define('Employee', {
     isManager:Sequelize.BOOLEAN,
     employeeManagerNum:Sequelize.INTEGER,
     status:Sequelize.STRING,
+    department:Sequelize.INTEGER,
     hireDate:Sequelize.STRING,
 });
 
@@ -123,14 +124,14 @@ module.exports.getEmployeesByManager = function (manager) {
     });
 };
 
-module.exports.getEmployeesByNum = function (num) {
+module.exports.getEmployeeByNum = function (num) {
     return new Promise((resolve, reject) => {
         Employee.findAll({
             where:{
                 employeeNum : num
             }
         })
-        .then(()=>(Employee.findAll({
+        .then(()=>resolve(Employee.findAll({
             where:{
                 employeeNum : num
             }
@@ -153,14 +154,40 @@ module.exports.addEmployee = function(employeeData){
 
 module.exports.updateEmployee = function(employeeData){
     employeeData.isManager = (employeeData.isManager) ? true : false;
-    for(prop in employeeData){
-        if(prop == "") prop = null;
-    }
-    return new Promise((resolve,reject)=>{
-        Employee.update(employeeData,{where:{employee: employeeData.employeeNum}})
-        .then(()=> resolve(Employee.update(employeeData,{where:{employeeNum: employeeData.employeeNum}})))
-        .catch(()=> reject('unable to update employee'))
-    });
+            for(prop in employeeData){
+                if(employeeData[prop] == "")
+                    employeeData[prop] = null;
+            }
+            return new Promise ((resolve,reject)=>{
+                Employee.update(Employee.update({
+                    firstName: employeeData.firstName,
+                    last_name: employeeData.last_name,
+                    email: employeeData.email,
+                    addressStreet: employeeData.addressStreet,
+                    addresCity: employeeData.addresCity,
+                    addressPostal: employeeData.addressPostal,
+                    addressState: employeeData.addressPostal,
+                    isManager: employeeData.isManager,
+                    employeeManagerNum: employeeData.employeeManagerNum,
+                    status: employeeData.status,
+                    department: employeeData.department
+                },{where:{employeeNum: employeeData.employeeNum
+                }}));
+            resolve(Employee.update({
+                firstName: employeeData.firstName,
+                last_name: employeeData.last_name,
+                email: employeeData.email,
+                addressStreet: employeeData.addressStreet,
+                addresCity: employeeData.addresCity,
+                addressPostal: employeeData.addressPostal,
+                addressState: employeeData.addressPostal,
+                isManager: employeeData.isManager,
+                employeeManagerNum: employeeData.employeeManagerNum,
+                status: employeeData.status,
+                department: employeeData.department
+            },{where:{employeeNum: employeeData.employeeNum
+            }}));
+        }).catch(()=>{reject("unable to update employee")});
 };
 
 module.exports.addDepartment = function(departmentData){
