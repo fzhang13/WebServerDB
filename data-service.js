@@ -27,7 +27,6 @@ const Employee = sequelize.define('Employee', {
     isManager:Sequelize.BOOLEAN,
     employeeManagerNum:Sequelize.INTEGER,
     status:Sequelize.STRING,
-    department:Sequelize.INTEGER,
     hireDate:Sequelize.STRING,
 });
 
@@ -39,6 +38,8 @@ const Department = sequelize.define('Department',{
     },
     departmentName: Sequelize.STRING
 });
+
+Department.hasMany(Employee, {foreignKey: 'department'});
 
 
 module.exports.initialize = function () {
