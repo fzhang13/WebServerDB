@@ -71,7 +71,7 @@ module.exports.getAllEmployees = function () {
 module.exports.getDepartments = function () {
     return new Promise((resolve, reject) => {
         Department.findAll()
-        .then(()=> resolve(Department.findAll()))
+        .then((data)=> resolve(data))
         .catch(()=> reject('no results returned'))
     });
 };
@@ -83,11 +83,7 @@ module.exports.getEmployeesByStatus = function (status) {
                 status: status
             }
         })
-        .then(()=> resolve(Employee.findAll({
-            where:{
-                status:status
-            }
-        })))
+        .then((data)=> resolve(data))
         .catch(()=> reject('no results returned'))
     });
 };
@@ -99,11 +95,7 @@ module.exports.getEmployeesByDepartment = function (department) {
                 department: department
             }
         })
-        .then(()=>resolve(Employee.findAll({
-            where:{
-                department: department
-            }
-        })))
+        .then((data)=>resolve(data))
         .catch(()=>reject("no results returned")) 
     });
 }
@@ -115,11 +107,7 @@ module.exports.getEmployeesByManager = function (manager) {
                 employeeManagerNum: manager
             }
         })
-        .then(()=> resolve(Employee.findAll({
-            where:{
-                employeeManagerNum: manager
-            }
-        })))
+        .then((data)=> resolve(data))
         .catch(()=> reject('no results returned'))
     });
 };
@@ -131,11 +119,7 @@ module.exports.getEmployeeByNum = function (num) {
                 employeeNum : num
             }
         })
-        .then(()=>resolve(Employee.findAll({
-            where:{
-                employeeNum : num
-            }
-        })))
+        .then((data)=>resolve(data))
         .catch(()=> reject('no results returned'))
     });
 };
@@ -159,7 +143,7 @@ module.exports.updateEmployee = function(employeeData){
                     employeeData[prop] = null;
             }
             return new Promise ((resolve,reject)=>{
-                Employee.update(Employee.update({
+                Employee.update({
                     firstName: employeeData.firstName,
                     last_name: employeeData.last_name,
                     email: employeeData.email,
@@ -171,24 +155,11 @@ module.exports.updateEmployee = function(employeeData){
                     employeeManagerNum: employeeData.employeeManagerNum,
                     status: employeeData.status,
                     department: employeeData.department
-                },{where:{employeeNum: employeeData.employeeNum
-                }}));
-            resolve(Employee.update({
-                firstName: employeeData.firstName,
-                last_name: employeeData.last_name,
-                email: employeeData.email,
-                addressStreet: employeeData.addressStreet,
-                addresCity: employeeData.addresCity,
-                addressPostal: employeeData.addressPostal,
-                addressState: employeeData.addressPostal,
-                isManager: employeeData.isManager,
-                employeeManagerNum: employeeData.employeeManagerNum,
-                status: employeeData.status,
-                department: employeeData.department
-            },{where:{employeeNum: employeeData.employeeNum
-            }}));
-        }).catch(()=>{reject("unable to update employee")});
-};
+                },{where:{employeeNum: employeeData.employeeNum}})
+                .then((data)=>resolve(data))
+                .catch(()=>reject("unable to update employee"))}
+)};
+
 
 module.exports.addDepartment = function(departmentData){
     for(prop in departmentData){
@@ -207,7 +178,7 @@ module.exports.updateDepartment = function(departmentData){
     }
     return new Promise((resolve,reject)=>{
         Department.update(departmentData,{where:{departmentId: departmentData.departmentId}})
-        .then(()=> resolve(Department.update(departmentData,{where:{departmentId: departmentData.departmentId}})))
+        .then((data)=> resolve(data))
         .catch(()=> reject('unable to update department'))
     });
 };
@@ -219,11 +190,7 @@ module.exports.getDepartmentById = function(id){
                 departmentId: id
             }
         })
-        .then(()=>resolve(Department.findAll({
-            where:{
-                departmentId: id
-            }
-        })))
+        .then((data)=>resolve(data))
         .catch(()=> reject('no results returned'))
     });
 };
@@ -231,7 +198,7 @@ module.exports.getDepartmentById = function(id){
 module.exports.deleteDepartmentById = function(id){
     return new Promise((resolve,reject)=>{
         Department.destroy({where:{departmentId:id}})
-        .then(()=> resolve(Department.destroy({where:{departmentId : id}})))
+        .then((data)=> resolve(data))
         .catch(()=> reject('unable to delete department'))
     });
 };
@@ -239,7 +206,7 @@ module.exports.deleteDepartmentById = function(id){
 module.exports.deleteEmployeeByNum = function(empNum){
     return new Promise((resolve, reject) => {
         Employee.destroy({where: {employeeNum:empNum}}) 
-        .then(()=>resolve(Employee.destroy({where: {employeeNum:empNum}}))) 
+        .then((data)=>resolve(data)) 
         .catch(()=>reject("unable to delete employee"))
     });
 };
