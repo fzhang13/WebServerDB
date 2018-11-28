@@ -145,10 +145,10 @@ module.exports.updateEmployee = function(employeeData){
             return new Promise ((resolve,reject)=>{
                 Employee.update({
                     firstName: employeeData.firstName,
-                    last_name: employeeData.last_name,
+                    lastName: employeeData.lastName,
                     email: employeeData.email,
                     addressStreet: employeeData.addressStreet,
-                    addresCity: employeeData.addresCity,
+                    addressCity: employeeData.addressCity,
                     addressPostal: employeeData.addressPostal,
                     addressState: employeeData.addressPostal,
                     isManager: employeeData.isManager,
