@@ -1,4 +1,4 @@
-# RPS-JAVA, Rock Paper Scissors Simulator
+# WEB SERVER
 
 ## Description
 
