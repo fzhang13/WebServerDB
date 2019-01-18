@@ -1,5 +1,4 @@
 # WEB SERVER
-
 ## Description
 
 Full fledged Web server project developed for WEB322 class using Express and relevant middlewares
