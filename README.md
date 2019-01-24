@@ -15,7 +15,7 @@ Full fledged Web server project developed for WEB322 class using Express and rel
 
 ## Hosted on Heroku 
 
-* Click me[https://murmuring-earth-25765.herokuapp.com/]
+* [Click me](https://murmuring-earth-25765.herokuapp.com/)
 
 
 ## Built With
